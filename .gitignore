@@ -1,0 +1,21 @@
+# Ignorar archivos de sistema
+.DS_Store
+Thumbs.db
+
+# Ignorar Entornos Virtuales de Python
+.venv/
+venv/
+*.pyc
+__pycache__/
+
+# Ignorar Datos Pesados (IMPORTANTE)
+*.csv
+*.parquet
+*.gz
+data/
+
+# Ignorar Credenciales (MUY IMPORTANTE)
+.env
+google_credentials.json
+*.pem
+
