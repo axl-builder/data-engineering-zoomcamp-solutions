@@ -1,5 +1,5 @@
 [project]
-name = "axl-personal-2025"
+name = "pipeline"
 version = "0.1.0"
 description = "Add your description here"
 readme = "README.md"
@@ -7,4 +7,10 @@ requires-python = ">=3.13"
 dependencies = [
     "pandas>=2.3.3",
     "pyarrow>=22.0.0",
+]
+
+[dependency-groups]
+dev = [
+    "jupyter>=1.1.1",
+    "pgcli>=4.4.0",
 ]
