@@ -1,0 +1,157 @@
+0it [00:00, ?it/s]0it [00:01, ?it/s]
+Traceback (most recent call last):
+  File [35m"/app/.venv/lib/python3.13/site-packages/sqlalchemy/engine/base.py"[0m, line [35m143[0m, in [35m__init__[0m
+    self._dbapi_connection = [31mengine.raw_connection[0m[1;31m()[0m
+                             [31m~~~~~~~~~~~~~~~~~~~~~[0m[1;31m^^[0m
+  File [35m"/app/.venv/lib/python3.13/site-packages/sqlalchemy/engine/base.py"[0m, line [35m3309[0m, in [35mraw_connection[0m
+    return [31mself.pool.connect[0m[1;31m()[0m
+           [31m~~~~~~~~~~~~~~~~~[0m[1;31m^^[0m
+  File [35m"/app/.venv/lib/python3.13/site-packages/sqlalchemy/pool/base.py"[0m, line [35m447[0m, in [35mconnect[0m
+    return [31m_ConnectionFairy._checkout[0m[1;31m(self)[0m
+           [31m~~~~~~~~~~~~~~~~~~~~~~~~~~[0m[1;31m^^^^^^[0m
+  File [35m"/app/.venv/lib/python3.13/site-packages/sqlalchemy/pool/base.py"[0m, line [35m1264[0m, in [35m_checkout[0m
+    fairy = _ConnectionRecord.checkout(pool)
+  File [35m"/app/.venv/lib/python3.13/site-packages/sqlalchemy/pool/base.py"[0m, line [35m711[0m, in [35mcheckout[0m
+    rec = pool._do_get()
+  File [35m"/app/.venv/lib/python3.13/site-packages/sqlalchemy/pool/impl.py"[0m, line [35m177[0m, in [35m_do_get[0m
+    with [31mutil.safe_reraise[0m[1;31m()[0m:
+         [31m~~~~~~~~~~~~~~~~~[0m[1;31m^^[0m
+  File [35m"/app/.venv/lib/python3.13/site-packages/sqlalchemy/util/langhelpers.py"[0m, line [35m224[0m, in [35m__exit__[0m
+    raise exc_value.with_traceback(exc_tb)
+  File [35m"/app/.venv/lib/python3.13/site-packages/sqlalchemy/pool/impl.py"[0m, line [35m175[0m, in [35m_do_get[0m
+    return [31mself._create_connection[0m[1;31m()[0m
+           [31m~~~~~~~~~~~~~~~~~~~~~~~[0m[1;31m^^[0m
+  File [35m"/app/.venv/lib/python3.13/site-packages/sqlalchemy/pool/base.py"[0m, line [35m388[0m, in [35m_create_connection[0m
+    return _ConnectionRecord(self)
+  File [35m"/app/.venv/lib/python3.13/site-packages/sqlalchemy/pool/base.py"[0m, line [35m673[0m, in [35m__init__[0m
+    [31mself.__connect[0m[1;31m()[0m
+    [31m~~~~~~~~~~~~~~[0m[1;31m^^[0m
+  File [35m"/app/.venv/lib/python3.13/site-packages/sqlalchemy/pool/base.py"[0m, line [35m899[0m, in [35m__connect[0m
+    with [31mutil.safe_reraise[0m[1;31m()[0m:
+         [31m~~~~~~~~~~~~~~~~~[0m[1;31m^^[0m
+  File [35m"/app/.venv/lib/python3.13/site-packages/sqlalchemy/util/langhelpers.py"[0m, line [35m224[0m, in [35m__exit__[0m
+    raise exc_value.with_traceback(exc_tb)
+  File [35m"/app/.venv/lib/python3.13/site-packages/sqlalchemy/pool/base.py"[0m, line [35m895[0m, in [35m__connect[0m
+    self.dbapi_connection = connection = [31mpool._invoke_creator[0m[1;31m(self)[0m
+                                         [31m~~~~~~~~~~~~~~~~~~~~[0m[1;31m^^^^^^[0m
+  File [35m"/app/.venv/lib/python3.13/site-packages/sqlalchemy/engine/create.py"[0m, line [35m661[0m, in [35mconnect[0m
+    return [31mdialect.connect[0m[1;31m(*cargs, **cparams)[0m
+           [31m~~~~~~~~~~~~~~~[0m[1;31m^^^^^^^^^^^^^^^^^^^[0m
+  File [35m"/app/.venv/lib/python3.13/site-packages/sqlalchemy/engine/default.py"[0m, line [35m630[0m, in [35mconnect[0m
+    return [31mself.loaded_dbapi.connect[0m[1;31m(*cargs, **cparams)[0m  # type: ignore[no-any-return]  # NOQA: E501
+           [31m~~~~~~~~~~~~~~~~~~~~~~~~~[0m[1;31m^^^^^^^^^^^^^^^^^^^[0m
+  File [35m"/app/.venv/lib/python3.13/site-packages/psycopg2/__init__.py"[0m, line [35m122[0m, in [35mconnect[0m
+    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+[1;35mpsycopg2.OperationalError[0m: [35mconnection to server at "localhost" (::1), port 5432 failed: Connection refused
+	Is the server running on that host and accepting TCP/IP connections?
+connection to server at "localhost" (127.0.0.1), port 5432 failed: Connection refused
+	Is the server running on that host and accepting TCP/IP connections?
+[0m
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File [35m"/app/ingest_data.py"[0m, line [35m81[0m, in [35m<module>[0m
+    [31mrun[0m[1;31m()[0m
+    [31m~~~[0m[1;31m^^[0m
+  File [35m"/app/.venv/lib/python3.13/site-packages/click/core.py"[0m, line [35m1157[0m, in [35m__call__[0m
+    return [31mself.main[0m[1;31m(*args, **kwargs)[0m
+           [31m~~~~~~~~~[0m[1;31m^^^^^^^^^^^^^^^^^[0m
+  File [35m"/app/.venv/lib/python3.13/site-packages/click/core.py"[0m, line [35m1078[0m, in [35mmain[0m
+    rv = self.invoke(ctx)
+  File [35m"/app/.venv/lib/python3.13/site-packages/click/core.py"[0m, line [35m1434[0m, in [35minvoke[0m
+    return [31mctx.invoke[0m[1;31m(self.callback, **ctx.params)[0m
+           [31m~~~~~~~~~~[0m[1;31m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  File [35m"/app/.venv/lib/python3.13/site-packages/click/core.py"[0m, line [35m783[0m, in [35minvoke[0m
+    return __callback(*args, **kwargs)
+  File [35m"/app/ingest_data.py"[0m, line [35m68[0m, in [35mrun[0m
+    [31mdf_chunk.head(0).to_sql[0m[1;31m([0m
+    [31m~~~~~~~~~~~~~~~~~~~~~~~[0m[1;31m^[0m
+        [1;31mname=target_table,[0m
+        [1;31m^^^^^^^^^^^^^^^^^^[0m
+        [1;31mcon=engine,[0m
+        [1;31m^^^^^^^^^^^[0m
+        [1;31mif_exists='replace'[0m
+        [1;31m^^^^^^^^^^^^^^^^^^^[0m
+        [1;31m)[0m
+        [1;31m^[0m
+  File [35m"/app/.venv/lib/python3.13/site-packages/pandas/util/_decorators.py"[0m, line [35m333[0m, in [35mwrapper[0m
+    return func(*args, **kwargs)
+  File [35m"/app/.venv/lib/python3.13/site-packages/pandas/core/generic.py"[0m, line [35m3109[0m, in [35mto_sql[0m
+    return [31msql.to_sql[0m[1;31m([0m
+           [31m~~~~~~~~~~[0m[1;31m^[0m
+        [1;31mself,[0m
+        [1;31m^^^^^[0m
+    ...<8 lines>...
+        [1;31mmethod=method,[0m
+        [1;31m^^^^^^^^^^^^^^[0m
+    [1;31m)[0m
+    [1;31m^[0m
+  File [35m"/app/.venv/lib/python3.13/site-packages/pandas/io/sql.py"[0m, line [35m843[0m, in [35mto_sql[0m
+    with [31mpandasSQL_builder[0m[1;31m(con, schema=schema, need_transaction=True)[0m as pandas_sql:
+         [31m~~~~~~~~~~~~~~~~~[0m[1;31m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  File [35m"/app/.venv/lib/python3.13/site-packages/pandas/io/sql.py"[0m, line [35m908[0m, in [35mpandasSQL_builder[0m
+    return SQLDatabase(con, schema, need_transaction)
+  File [35m"/app/.venv/lib/python3.13/site-packages/pandas/io/sql.py"[0m, line [35m1648[0m, in [35m__init__[0m
+    con = self.exit_stack.enter_context([31mcon.connect[0m[1;31m()[0m)
+                                        [31m~~~~~~~~~~~[0m[1;31m^^[0m
+  File [35m"/app/.venv/lib/python3.13/site-packages/sqlalchemy/engine/base.py"[0m, line [35m3285[0m, in [35mconnect[0m
+    return [31mself._connection_cls[0m[1;31m(self)[0m
+           [31m~~~~~~~~~~~~~~~~~~~~[0m[1;31m^^^^^^[0m
+  File [35m"/app/.venv/lib/python3.13/site-packages/sqlalchemy/engine/base.py"[0m, line [35m145[0m, in [35m__init__[0m
+    [31mConnection._handle_dbapi_exception_noconnection[0m[1;31m([0m
+    [31m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m[1;31m^[0m
+        [1;31merr, dialect, engine[0m
+        [1;31m^^^^^^^^^^^^^^^^^^^^[0m
+    [1;31m)[0m
+    [1;31m^[0m
+  File [35m"/app/.venv/lib/python3.13/site-packages/sqlalchemy/engine/base.py"[0m, line [35m2448[0m, in [35m_handle_dbapi_exception_noconnection[0m
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File [35m"/app/.venv/lib/python3.13/site-packages/sqlalchemy/engine/base.py"[0m, line [35m143[0m, in [35m__init__[0m
+    self._dbapi_connection = [31mengine.raw_connection[0m[1;31m()[0m
+                             [31m~~~~~~~~~~~~~~~~~~~~~[0m[1;31m^^[0m
+  File [35m"/app/.venv/lib/python3.13/site-packages/sqlalchemy/engine/base.py"[0m, line [35m3309[0m, in [35mraw_connection[0m
+    return [31mself.pool.connect[0m[1;31m()[0m
+           [31m~~~~~~~~~~~~~~~~~[0m[1;31m^^[0m
+  File [35m"/app/.venv/lib/python3.13/site-packages/sqlalchemy/pool/base.py"[0m, line [35m447[0m, in [35mconnect[0m
+    return [31m_ConnectionFairy._checkout[0m[1;31m(self)[0m
+           [31m~~~~~~~~~~~~~~~~~~~~~~~~~~[0m[1;31m^^^^^^[0m
+  File [35m"/app/.venv/lib/python3.13/site-packages/sqlalchemy/pool/base.py"[0m, line [35m1264[0m, in [35m_checkout[0m
+    fairy = _ConnectionRecord.checkout(pool)
+  File [35m"/app/.venv/lib/python3.13/site-packages/sqlalchemy/pool/base.py"[0m, line [35m711[0m, in [35mcheckout[0m
+    rec = pool._do_get()
+  File [35m"/app/.venv/lib/python3.13/site-packages/sqlalchemy/pool/impl.py"[0m, line [35m177[0m, in [35m_do_get[0m
+    with [31mutil.safe_reraise[0m[1;31m()[0m:
+         [31m~~~~~~~~~~~~~~~~~[0m[1;31m^^[0m
+  File [35m"/app/.venv/lib/python3.13/site-packages/sqlalchemy/util/langhelpers.py"[0m, line [35m224[0m, in [35m__exit__[0m
+    raise exc_value.with_traceback(exc_tb)
+  File [35m"/app/.venv/lib/python3.13/site-packages/sqlalchemy/pool/impl.py"[0m, line [35m175[0m, in [35m_do_get[0m
+    return [31mself._create_connection[0m[1;31m()[0m
+           [31m~~~~~~~~~~~~~~~~~~~~~~~[0m[1;31m^^[0m
+  File [35m"/app/.venv/lib/python3.13/site-packages/sqlalchemy/pool/base.py"[0m, line [35m388[0m, in [35m_create_connection[0m
+    return _ConnectionRecord(self)
+  File [35m"/app/.venv/lib/python3.13/site-packages/sqlalchemy/pool/base.py"[0m, line [35m673[0m, in [35m__init__[0m
+    [31mself.__connect[0m[1;31m()[0m
+    [31m~~~~~~~~~~~~~~[0m[1;31m^^[0m
+  File [35m"/app/.venv/lib/python3.13/site-packages/sqlalchemy/pool/base.py"[0m, line [35m899[0m, in [35m__connect[0m
+    with [31mutil.safe_reraise[0m[1;31m()[0m:
+         [31m~~~~~~~~~~~~~~~~~[0m[1;31m^^[0m
+  File [35m"/app/.venv/lib/python3.13/site-packages/sqlalchemy/util/langhelpers.py"[0m, line [35m224[0m, in [35m__exit__[0m
+    raise exc_value.with_traceback(exc_tb)
+  File [35m"/app/.venv/lib/python3.13/site-packages/sqlalchemy/pool/base.py"[0m, line [35m895[0m, in [35m__connect[0m
+    self.dbapi_connection = connection = [31mpool._invoke_creator[0m[1;31m(self)[0m
+                                         [31m~~~~~~~~~~~~~~~~~~~~[0m[1;31m^^^^^^[0m
+  File [35m"/app/.venv/lib/python3.13/site-packages/sqlalchemy/engine/create.py"[0m, line [35m661[0m, in [35mconnect[0m
+    return [31mdialect.connect[0m[1;31m(*cargs, **cparams)[0m
+           [31m~~~~~~~~~~~~~~~[0m[1;31m^^^^^^^^^^^^^^^^^^^[0m
+  File [35m"/app/.venv/lib/python3.13/site-packages/sqlalchemy/engine/default.py"[0m, line [35m630[0m, in [35mconnect[0m
+    return [31mself.loaded_dbapi.connect[0m[1;31m(*cargs, **cparams)[0m  # type: ignore[no-any-return]  # NOQA: E501
+           [31m~~~~~~~~~~~~~~~~~~~~~~~~~[0m[1;31m^^^^^^^^^^^^^^^^^^^[0m
+  File [35m"/app/.venv/lib/python3.13/site-packages/psycopg2/__init__.py"[0m, line [35m122[0m, in [35mconnect[0m
+    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+[1;35msqlalchemy.exc.OperationalError[0m: [35m(psycopg2.OperationalError) connection to server at "localhost" (::1), port 5432 failed: Connection refused
+	Is the server running on that host and accepting TCP/IP connections?
+connection to server at "localhost" (127.0.0.1), port 5432 failed: Connection refused
+	Is the server running on that host and accepting TCP/IP connections?
+
+(Background on this error at: https://sqlalche.me/e/20/e3q8)[0m
