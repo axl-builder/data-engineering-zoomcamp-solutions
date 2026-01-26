@@ -66,13 +66,13 @@ hw-01/
 - uv installed (`pip install uv`)
 - GCP account (for Terraform section)
 
-# 1. Levantar la infraestructura
+### 1. Levantar la infraestructura
 docker-compose up -d
 
-# 2. Construir la imagen única de ingesta
+### 2. Construir la imagen única de ingesta
 docker build -t taxi-ingest-image:latest .
 
-# 3. Ingestar las Zonas (Ejecutando un script específico)
+### 3. Ingestar las Zonas (Ejecutando un script específico)
 docker run -it --network=hw-01_default \
   taxi-ingest-image:latest \
     uv run zones-dataset.py \
@@ -82,7 +82,7 @@ docker run -it --network=hw-01_default \
     --pg-db=hw-01 \
     --target-table=zones
 
-# 4. Ingestar los Viajes (Ejecutando el otro script)
+### 4. Ingestar los Viajes (Ejecutando el otro script)
 # Nota: Montamos el volumen para que vea el archivo parquet local
 docker run -it --network=hw-01_default \
   -v $(pwd):/app \
@@ -273,13 +273,13 @@ Updated main.tf to reference these variables, ensuring the google_storage_bucket
 Infrastructure Lifecycle (CLI):
 
 Bash
-# Prepare the directory and install GCS/BigQuery providers
+### Prepare the directory and install GCS/BigQuery providers
 terraform init
 
-# Preview the changes to be made in the GCP Project
+### Preview the changes to be made in the GCP Project
 terraform plan
 
-# Provision the resources
+### Provision the resources
 terraform apply
 Resources created:
 
