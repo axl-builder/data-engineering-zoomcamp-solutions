@@ -1,0 +1,33 @@
+# === Terraform ===
+# Ignoramos la carpeta de binarios (se regenera con init)
+.terraform/
+
+# Ignoramos el ESTADO (contiene datos sensibles de tu infra)
+*.tfstate
+*.tfstate.*
+
+# Ignoramos variables locales de secretos
+*.tfvars
+*.tfvars.json
+
+# === Google Cloud (Seguridad Crítica) ===
+# Nunca subir las llaves JSON de Service Accounts
+*.json
+
+# === Docker ===
+# Datos persistentes de la base de datos (no queremos subir Gigas de Postgres)
+ny_data/
+postgres_data/
+
+# === Python ===
+# Entornos virtuales
+venv/
+.venv/
+env/
+__pycache__/
+*.py[cod]
+
+# === Windows / WSL (Basura de sistema) ===
+# Los metadatos que vimos antes
+*:Zone.Identifier
+.DS_Store
