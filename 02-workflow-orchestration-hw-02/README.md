@@ -59,9 +59,9 @@ SELECT count(*) FROM `de-zoomcamp-axl-2025.zoomcamp.yellow_tripdata` WHERE filen
 6. How would you configure the time zone to New York in a Schedule trigger?
 
 - Add a `timezone` property set to `EST` in the `Schedule` trigger configuration 
-- Add a `timezone` property set to `America/New_York` in the `Schedule` trigger configuration
+- Add a `timezone` property set to `America/New_York` in the `Schedule` trigger configuration ✓
 - Add a `timezone` property set to `UTC-5` in the `Schedule` trigger configuration
-- Add a `location` property set to `New_York` in the `Schedule` trigger configuration ✓
+- Add a `location` property set to `New_York` in the `Schedule` trigger configuration 
 
 ###### Justification:
 ```yaml
