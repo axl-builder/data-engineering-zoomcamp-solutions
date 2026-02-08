@@ -44,7 +44,7 @@ What is count of records for the 2024 Yellow Taxi Data?
 ```sql
 SELECT count(*)
 
-FROM `de-zoomcamp-axl-2025.zoomcamp.yellow_tripdata_2024_non_partitioned`;
+FROM `NOMBRE_DE_TU_PROYECTO.zoomcamp.yellow_tripdata_2024_non_partitioned`;
 ```
 
 ## Question 2. Data read estimation
@@ -60,11 +60,11 @@ What is the **estimated amount** of data that will be read when this query is ex
 
 ##### Justification:
 ```sql
-SELECT COUNT(DISTINCT PULocationID) FROM `de-zoomcamp-axl-2025.zoomcamp.external_yellow_tripdata`;
+SELECT COUNT(DISTINCT PULocationID) FROM `NOMBRE_DE_TU_PROYECTO.zoomcamp.external_yellow_tripdata`;
 ```
 
 ```sql
-SELECT COUNT(DISTINCT PULocationID) FROM `de-zoomcamp-axl-2025.zoomcamp.yellow_tripdata_2024_non_partitioned`;
+SELECT COUNT(DISTINCT PULocationID) FROM `NOMBRE_DE_TU_PROYECTO.zoomcamp.yellow_tripdata_2024_non_partitioned`;
 ```
 
 ## Question 3. Understanding columnar storage
@@ -81,11 +81,11 @@ doubling the estimated bytes processed.
 
 ##### Justification:
 ```sql
-SELECT PULocationID FROM `de-zoomcamp-axl-2025.zoomcamp.yellow_tripdata_2024_non_partitioned`;
+SELECT PULocationID FROM `NOMBRE_DE_TU_PROYECTO.zoomcamp.yellow_tripdata_2024_non_partitioned`;
 ```
 
 ```sql
-SELECT PULocationID, DOLocationID FROM `de-zoomcamp-axl-2025.zoomcamp.yellow_tripdata_2024_non_partitioned`;
+SELECT PULocationID, DOLocationID FROM `NOMBRE_DE_TU_PROYECTO.zoomcamp.yellow_tripdata_2024_non_partitioned`;
 ```
 
 ## Question 4. Counting zero fare trips
@@ -98,7 +98,7 @@ How many records have a fare_amount of 0?
 
 ##### Justification:
 ```sql
-SELECT COUNT(*) FROM `de-zoomcamp-axl-2025.zoomcamp.yellow_tripdata_2024_non_partitioned` WHERE fare_amount = 0;
+SELECT COUNT(*) FROM `NOMBRE_DE_TU_PROYECTO.zoomcamp.yellow_tripdata_2024_non_partitioned` WHERE fare_amount = 0;
 ```
 
 ## Question 5. Partitioning and clustering
@@ -112,7 +112,7 @@ What is the best strategy to make an optimized table in Big Query if your query 
 
 ##### Justification:
 ```sql
-CREATE OR REPLACE TABLE `de-zoomcamp-axl-2025.zoomcamp.yellow_tripdata_2024_optimized` PARTITION BY DATE(tpep_dropoff_datetime) CLUSTER BY VendorID AS SELECT * FROM `de-zoomcamp-axl-2025.zoomcamp.external_yellow_tripdata`;
+CREATE OR REPLACE TABLE `NOMBRE_DE_TU_PROYECTO.zoomcamp.yellow_tripdata_2024_optimized` PARTITION BY DATE(tpep_dropoff_datetime) CLUSTER BY VendorID AS SELECT * FROM `NOMBRE_DE_TU_PROYECTO.zoomcamp.external_yellow_tripdata`;
 ```
 
 - **Partitioning (The "Big Filter"):** By partitioning the table on a `DATE` or `TIMESTAMP` column (like `tpep_dropoff_datetime`), BigQuery physically divides the data into distinct segments. When you run a query with a date filter, BigQuery performs **"partition pruning"**, meaning it ignores all data outside that date range. This drastically reduces the number of bytes scanned and, consequently, the cost.
@@ -138,11 +138,11 @@ Choose the answer which most closely matches.
 
 ##### Justification:
 ```sql
-SELECT DISTINCT VendorID FROM `de-zoomcamp-axl-2025.zoomcamp.yellow_tripdata_2024_non_partitioned` WHERE tpep_dropoff_datetime BETWEEN '2024-03-01' AND '2024-03-15';
+SELECT DISTINCT VendorID FROM `NOMBRE_DE_TU_PROYECTO.zoomcamp.yellow_tripdata_2024_non_partitioned` WHERE tpep_dropoff_datetime BETWEEN '2024-03-01' AND '2024-03-15';
 ```
 
 ```sql
-SELECT DISTINCT VendorID FROM `de-zoomcamp-axl-2025.zoomcamp.yellow_tripdata_2024_optimized` WHERE tpep_dropoff_datetime BETWEEN '2024-03-01' AND '2024-03-15';
+SELECT DISTINCT VendorID FROM `NOMBRE_DE_TU_PROYECTO.zoomcamp.yellow_tripdata_2024_optimized` WHERE tpep_dropoff_datetime BETWEEN '2024-03-01' AND '2024-03-15';
 ```
 ## Question 7. External table storage
 

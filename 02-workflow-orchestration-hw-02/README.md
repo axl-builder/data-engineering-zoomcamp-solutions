@@ -29,7 +29,7 @@ Complete the quiz shown below. It's a set of 6 multiple-choice questions to test
 
 ###### Justification:
 ```sql
-SELECT count(*) FROM `de-zoomcamp-axl-2025.zoomcamp.yellow_tripdata` WHERE filename LIKE 'yellow_tripdata_2020%';
+SELECT count(*) FROM `NOMBRE_DE_TU_PROYECTO.zoomcamp.yellow_tripdata` WHERE filename LIKE 'yellow_tripdata_2020%';
 ```
 
 4. How many rows are there for the `Green` Taxi data for all CSV files in the year 2020?
@@ -41,7 +41,7 @@ SELECT count(*) FROM `de-zoomcamp-axl-2025.zoomcamp.yellow_tripdata` WHERE filen
 
 ###### Justification:
 ```sql
-SELECT count(*) FROM `de-zoomcamp-axl-2025.zoomcamp.green_tripdata` WHERE filename LIKE 'green_tripdata_2020%';
+SELECT count(*) FROM `NOMBRE_DE_TU_PROYECTO.zoomcamp.green_tripdata` WHERE filename LIKE 'green_tripdata_2020%';
 ```
 
 5. How many rows are there for the `Yellow` Taxi data for the March 2021 CSV file?
@@ -53,7 +53,7 @@ SELECT count(*) FROM `de-zoomcamp-axl-2025.zoomcamp.green_tripdata` WHERE filena
 
 ###### Justification:
 ```sql
-SELECT count(*) FROM `de-zoomcamp-axl-2025.zoomcamp.yellow_tripdata` WHERE filename LIKE 'yellow_tripdata_2021_03%';
+SELECT count(*) FROM `NOMBRE_DE_TU_PROYECTO.zoomcamp.yellow_tripdata` WHERE filename LIKE 'yellow_tripdata_2021_03%';
 ```
 
 6. How would you configure the time zone to New York in a Schedule trigger?

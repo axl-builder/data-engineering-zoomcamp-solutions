@@ -1,6 +1,6 @@
 variable "project" {
   description = "Project"
-  default     = "de-zoomcamp-axl-2025"
+  default     = "NOMBRE_DE_TU_PROYECTO"
 }
 
 variable "region" {
