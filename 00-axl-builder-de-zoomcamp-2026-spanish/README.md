@@ -1,4 +1,4 @@
-# 🚀 Data Engineering Zoomcamp 2026 - Apuntes y Proyectos
+# Data Engineering Zoomcamp 2026 - Apuntes y Proyectos
 ### Por Axl | Enfoque en Backend Automation & Cloud Infrastructure
 
 Bienvenido a mi repositorio de notas y proyectos del **Data Engineering Zoomcamp** de [DataTalks.Club](https://datatalks.club/blog/data-engineering-zoomcamp.html). 
@@ -7,7 +7,7 @@ Este espacio está dedicado a la comunidad hispanohablante. Aquí encontrarás l
 
 ---
 
-## 🛠️ Stack Tecnológico
+## Stack Tecnológico
 * **Lenguajes:** Python (gestionado con `uv`), SQL.
 * **Infraestructura:** Google Cloud Platform (GCS, BigQuery, Compute Engine), Terraform.
 * **Contenedores:** Docker & Docker Compose.
@@ -16,7 +16,7 @@ Este espacio está dedicado a la comunidad hispanohablante. Aquí encontrarás l
 
 ---
 
-## 📂 Contenido del curso
+## Contenido del curso
 
 ### [Módulo 1: Contenedores e Infraestructura como Código](./modulo-1/)
 * **Docker & Postgres:** Levantamiento de bases de datos locales y pipelines de ingesta.
@@ -43,7 +43,7 @@ Todos los archivos de configuración en este repositorio utilizan **placeholders
 
 ---
 
-## 🤝 Contribuciones
+## Contribuciones
 Si eres estudiante del Zoomcamp y hablas español, ¡siéntete libre de abrir un Issue o un PR si encuentras algún error o quieres aportar un tip extra! 
 
 **¡Sigamos automatizando el mundo de los datos!** ```
