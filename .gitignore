@@ -1,22 +1,49 @@
-# Ignorar archivos de sistema
+# ==========================================
+# 1. Archivos del Sistema y Herramientas (OS/IDEs)
+# ==========================================
 .DS_Store
 Thumbs.db
-*.parquet
+.vscode/
+.idea/
 
-# Ignorar Entornos Virtuales de Python
+# ==========================================
+# 2. Datos y Bases de Datos (Crucial para este curso)
+# ==========================================
+# Bases de datos DuckDB
+*.duckdb
+*.duckdb.wal
+
+# Formatos de datos pesados
+*.parquet
+*.csv
+*.gz
+*.json
+
+# Carpetas de datos (en cualquier nivel)
+data/
+**/data/
+
+# ==========================================
+# 3. dbt (Analytics Engineering)
+# ==========================================
+# Logs y artefactos compilados de dbt
+**/target/
+**/logs/
+dbt_packages/
+
+# ==========================================
+# 4. Entornos Virtuales y Python
+# ==========================================
 .venv/
 venv/
-*.pyc
+env/
 __pycache__/
+*.pyc
 
-# Ignorar Datos Pesados (IMPORTANTE)
-*.csv
-*.parquet
-*.gz
-data/
-
-# Ignorar Credenciales (MUY IMPORTANTE)
+# ==========================================
+# 5. Seguridad y Credenciales (¡No subir!)
+# ==========================================
 .env
-google_credentials.json
 *.pem
-*.json
+google_credentials.json
+profiles.yml

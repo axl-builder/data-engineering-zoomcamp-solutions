@@ -1,0 +1,10 @@
+version: 2
+
+sources:
+  - name: staging
+    description: "Raw data sources dor NYC taxi rides"
+    database: de-zoomcamp-axl-2025 # Proyect id
+    schema: zoomcamp # Dataset name
+    tables:
+      - name: yellow_tripdata
+      - name: green_tripdata

@@ -1,0 +1,33 @@
+# === dbt Specific ===
+# Ignora las dependencias descargadas (se regeneran con 'dbt deps')
+dbt_packages/
+# Ignora los logs de ejecución
+logs/
+# Ignora los artefactos compilados (el resultado de transformar Jinja a SQL)
+target/
+
+# === Python & Environment ===
+# Ignora entornos virtuales
+venv/
+.venv/
+env/
+__pycache__/
+*.pyc
+
+# === Database & Data (Crucial para DuckDB) ===
+# Ignora la base de datos local de DuckDB
+*.duckdb
+*.duckdb.wal
+
+# Ignora la carpeta de datos crudos (donde el script descarga los Parquet/CSVs)
+data/
+
+# === OS & IDE ===
+.DS_Store
+.vscode/
+.idea/
+
+# === Security ===
+# Aunque el profiles.yml suele estar en ~/.dbt/, si lo copias al repo, NUNCA lo subas
+profiles.yml
+.env
