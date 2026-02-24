@@ -17,19 +17,21 @@ Thumbs.db
 *.parquet
 *.csv
 *.gz
-*.json
 
 # Carpetas de datos (en cualquier nivel)
 data/
 **/data/
 
 # ==========================================
-# 3. dbt (Analytics Engineering)
+# 3. dbt y Bruin (Analytics Engineering)
 # ==========================================
-# Logs y artefactos compilados de dbt
+# Logs y artefactos compilados
 **/target/
 **/logs/
 dbt_packages/
+logs/
+logs/runs
+logs/*.log
 
 # ==========================================
 # 4. Entornos Virtuales y Python
@@ -39,15 +41,22 @@ venv/
 env/
 __pycache__/
 *.pyc
+*.py[cod]
 
 # ==========================================
-# 5. Seguridad y Credenciales (¡No subir!)
+# 5. Infraestructura (Terraform)
+# ==========================================
+.terraform/
+*.tfstate*
+.terraform.lock.hcl
+
+# ==========================================
+# 6. Seguridad y Credenciales (¡No subir!)
 # ==========================================
 .env
 *.pem
+*.json
 google_credentials.json
 profiles.yml
-.bruin.yml
-logs/runs
-logs/*.log
-*.py[cod]
+# .bruin.yml  <-- OJO: Si vas a usar Bruin Cloud, este archivo DEBE subirse 
+#                 pero SIN las contraseñas reales (usando env variables).

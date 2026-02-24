@@ -1,0 +1,10 @@
+name: ingestion.players
+type: ingestr
+
+parameters:
+  destination: bigquery # Cambiamos duckdb por bq
+  destination_connection: gcp-default
+  destination_project_id: "de-bruin-488403"
+  source_connection: chess-default
+  source_table: profiles
+

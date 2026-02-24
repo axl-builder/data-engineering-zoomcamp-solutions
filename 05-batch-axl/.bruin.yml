@@ -1,0 +1,17 @@
+# -*- mode: yaml -*-
+# Environment and connection configuration
+# See https://getbruin.com/docs for more options
+
+default_environment: default
+environments:
+  default:
+    connections:
+      duckdb:
+        - name: duckdb-default
+          # path relative to project root (where .bruin.yml lives)
+          path: bruin-pipeline/duckdb.db
+      chess:
+        - name: chess-default
+          players:
+            - MagnusCarlsen
+            - Hikaru

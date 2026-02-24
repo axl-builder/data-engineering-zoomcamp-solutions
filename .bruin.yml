@@ -1,0 +1,13 @@
+# Environment and connection configuration (project root - where Bruin looks for it)
+default_environment: default
+environments:
+  default:
+    connections:
+      duckdb:
+        - name: duckdb-default
+          path: 05-batch-axl/bruin-pipeline/duckdb.db
+      chess:
+        - name: chess-default
+          players:
+            - MagnusCarlsen
+            - Hikaru
