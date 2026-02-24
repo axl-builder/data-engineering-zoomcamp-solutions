@@ -47,3 +47,7 @@ __pycache__/
 *.pem
 google_credentials.json
 profiles.yml
+.bruin.yml
+logs/runs
+logs/*.log
+*.py[cod]
