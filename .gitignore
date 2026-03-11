@@ -60,3 +60,4 @@ google_credentials.json
 profiles.yml
 # .bruin.yml  <-- OJO: Si vas a usar Bruin Cloud, este archivo DEBE subirse 
 #                 pero SIN las contraseñas reales (usando env variables).
+.bruin.yml
