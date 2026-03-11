@@ -16,13 +16,7 @@ In this homework, we put into practice the concepts learned about Apache Spark, 
 
 After installing Spark and creating a local session, what is the output of `spark.version`?
 
-- `3.3.2`
-- `3.4.1`
-- `3.5.0` ✔
-- `4.0.0`
-
-#### Justification:
-Spark versioning follows the Apache Software Foundation release cycle. For the 2026 Zoomcamp cohort, **3.5.0** (or a closely related 3.5.x version) is the current stable standard used for the local environment and exercises.
+- `3.5.0` 
 
 ---
 
