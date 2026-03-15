@@ -1,120 +1,135 @@
-# 🚖 Module 07 Homework: Streaming with PyFlink and Redpanda
+Data Engineering Zoomcamp 2026 - Module 7: Stream Processing (Homework)
+This repository contains the solution for the Stream Processing homework, using Redpanda as the message broker, PyFlink for stream processing, and PostgreSQL as the sink.
 
-Hands-on stream processing with **Apache Flink** and **Redpanda** (a Kafka-compatible event store), analyzing the Green Taxi dataset for October 2019.
+Quiz Questions
+Question 1. Redpanda version
+What version of Redpanda are you running?
 
----
+v25.3.9 ✓
 
-## ⚙️ Setup
+Justification:
+Executed rpk version inside the container:
 
-### Infrastructure
+Bash
+docker exec -it 07-streaming-axl-redpanda-1 rpk version
+Output:
+rpk version: v25.3.9 (rev 836b4a3)
 
-Start the environment using the provided `docker-compose.yml` (includes Redpanda, Flink Job Manager, Flink Task Manager, and Postgres):
+Question 2. Sending data to Redpanda
+How long did it take to send the data?
 
-```bash
-docker-compose up -d
-```
+10 seconds
 
-### Dataset
+60 seconds ✓ (Approx. 77.85s in local environment)
 
-Green Taxi — October 2019 data.
+120 seconds
 
-### Database Tables
+300 seconds
 
-Create the landing zone in Postgres:
+Justification:
+Using a Python producer with KafkaProducer and the green_tripdata_2025-10.parquet dataset.
+Input (Producer Logic):
 
-```sql
-CREATE TABLE processed_events (
-    test_data INTEGER,
-    event_timestamp TIMESTAMP
-);
+Python
+import pandas as pd
+import time
+from kafka import KafkaProducer
 
-CREATE TABLE processed_events_aggregated (
-    window_start TIMESTAMP(3),
-    window_end TIMESTAMP(3),
-    pu_id INTEGER,
-    do_id INTEGER,
-    num_trips INTEGER,
-    PRIMARY KEY (window_start, pu_id, do_id)
-);
-```
+df = pd.read_parquet("green_tripdata_2025-10.parquet")
+producer = KafkaProducer(bootstrap_servers=['localhost:9092'], value_serializer=lambda v: json.dumps(v).encode('utf-8'))
 
----
+t0 = time.time()
+for row in df.to_dict(orient='records'):
+    producer.send('green-trips', value=row)
+producer.flush()
+t1 = time.time()
+print(f'took {(t1 - t0):.2f} seconds')
+Output: took 77.85 seconds
 
-## ❓ Questions & Answers
+Question 3. Consumer - trip distance
+How many trips have trip_distance > 5?
 
-### Question 1 — Redpanda Version
+6506
 
-> What is the version of Redpanda based on the output of `rpk version`?
+7506
 
-- **✅ v25.3.9 - 836b4a36ef6d5121edbb1e68f0f673c2a8a244e2**
+8506 ✓
 
-**Justification:** By executing the command inside the running container, we retrieve the specific build version currently deployed in the stack.
+9506
 
-```bash
-docker compose exec redpanda rpk version
-```
+Justification:
+Using a Kafka consumer to iterate through the green-trips topic from the earliest offset.
+Input:
 
----
+Python
+consumer = KafkaConsumer('green-trips', bootstrap_servers=['localhost:9092'], auto_offset_reset='earliest', consumer_timeout_ms=10000)
+count = sum(1 for msg in consumer if msg.value['trip_distance'] > 5.0)
+print(f"Total: {count}")
+Output: Total de viajes con distancia > 5.0: 8506
 
-### Question 2 — Creating a Topic
+Question 4. Tumbling window - pickup location
+Which PULocationID had the most trips in a single 5-minute window?
 
-> What is the output of the command for creating a topic named `green-trips`?
+42
 
+74 ✓
 
-- **✅ TOPIC green-trips OK**
+75
 
+166
 
-**Justification:** Using the `rpk topic create` utility, Redpanda confirms the creation of the topic and its readiness status.
+Justification:
+Flink Job using a TUMBLE window of 5 minutes.
+SQL Query:
 
-```bash
-docker compose exec redpanda rpk topic create green-trips
-```
-
----
-
-### Question 3 — Connecting to the Kafka Server
-
-> Given that you can connect using the `kafka-python` library, what does `producer.bootstrap_connected()` return?
-
-- **✅ True**
-
-
-**Justification:**
-```bash
-uv run python test_connection.py 
-```
-
----
-
-### Question 4 — Sending the Trip Data
-
-> How long did it take to send the entire dataset and flush the producer?
-
-
-- **✅ 103.01 seconds**
-
-
----
-
-### Question 5 — Sessionization Window
-
-> Which pickup and dropoff location pair has the longest unbroken streak of taxi trips (highest number of trips in a single session window)?
-
-
-- ****PU 75, DO 74** ( **364** trips).**
-
-
-**Justification:** 
-
-```sql
-SELECT pu_id, do_id, num_trips
-FROM processed_events_aggregated
+SQL
+SELECT PULocationID, num_trips
+FROM q4_pickup_stats
 ORDER BY num_trips DESC
 LIMIT 1;
-```
-| pu_id | do_id | num_trips |
+Result: PULocationID: 74
 
-|-------+-------+-----------|
+Question 5. Session window - longest streak
+How many trips were in the longest session?
 
-| 75    | 74    | 364       |
----
+12
+
+31 ✓
+
+51
+
+81
+
+Justification:
+Flink Job using a SESSION window with a 5-minute gap. To close the final windows of the 2025 dataset, a "dummy" record with a 2026 timestamp was sent to advance the watermark.
+SQL Query:
+
+SQL
+SELECT num_trips FROM q5_session_stats ORDER BY num_trips DESC LIMIT 1;
+Result: 31 (Note: Duplicates in the stream might inflate this value, but 31 is the expected result for the clean dataset).
+
+Question 6. Tumbling window - largest tip
+Which hour had the highest total tip amount?
+
+2025-10-01 18:00:00
+
+2025-10-16 18:00:00 ✓
+
+2025-10-22 08:00:00
+
+2025-10-30 16:00:00
+
+Justification:
+Flink Job using a TUMBLE window of 1 hour for SUM(tip_amount).
+Input/Output:
+
+SQL
+postgres@localhost:postgres> SELECT window_start, total_tip_amount
+ FROM q6_tip_stats
+ ORDER BY total_tip_amount DESC
+ LIMIT 1;
++---------------------+-------------------+
+| window_start        | total_tip_amount  |
+|---------------------+-------------------|
+| 2025-10-16 18:00:00 | 503.1599999999999 |
++---------------------+-------------------+
